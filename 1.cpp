@@ -10,11 +10,20 @@ class Tnode {
 
 		Tnode(std::string val, int t);
 
-		void set_left();
-		void set_right();
-		void get_left();
-		void get_right();
+		virtual	void set_left() = 0;
+		virtual void set_right() = 0;
+	//	virtual void get_left() = 0;
+	//	virtual void get_right() = 0;
 };
+
+class question : public Tnode{
+	public:
+		virtual	void set_left();
+};
+
+void question::set_left()
+{}
+
 
 Tnode::Tnode(std::string val, int t)
 {
@@ -29,6 +38,6 @@ int main()
 {
 	std::string str;
 	str = "qwerty";
-	Tnode tree(str,1);
+	//Tnode tree(str,1);
 	return 0;
 }
