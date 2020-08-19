@@ -5,6 +5,6 @@ class Animal : public Tnode{
 	public:
 //		virtual	void set_left();
 		virtual	int who();
-		void add(std::string, std::string );
+		virtual	void add_ask(std::string ask, std::string animal);
 };
 

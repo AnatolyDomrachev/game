@@ -13,6 +13,7 @@ class Tnode {
 		//Tnode(std::string val, int t);
 
 		virtual	int who() = 0;
+		virtual	void add_ask(std::string ask, std::string animal){}
 //		virtual	void set_left() = 0;
 //		virtual void set_right() = 0;
 	//	virtual void get_left() = 0;
