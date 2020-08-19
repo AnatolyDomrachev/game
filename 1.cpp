@@ -1,6 +1,8 @@
 #include <string>
 #include <iostream>
 
+enum{ASK, ANIMAL};
+
 class Tnode {
 	public:
 		std::string key;
@@ -8,23 +10,27 @@ class Tnode {
 		struct Tnode *left;
 		struct Tnode *right;
 
-		Tnode(std::string val, int t);
+		//Tnode(std::string val, int t);
 
+		virtual	int who() = 0;
 		virtual	void set_left() = 0;
-		virtual void set_right() = 0;
+//		virtual void set_right() = 0;
 	//	virtual void get_left() = 0;
 	//	virtual void get_right() = 0;
 };
 
-class question : public Tnode{
+class Ask : public Tnode{
 	public:
 		virtual	void set_left();
+		virtual	int who();
 };
 
-void question::set_left()
-{}
+int Ask::who()
+{
+	return ASK;
+}
 
-
+/*
 Tnode::Tnode(std::string val, int t)
 {
 	key = val;
@@ -32,6 +38,7 @@ Tnode::Tnode(std::string val, int t)
 	left = NULL;
 	right = NULL;
 }
+*/
 
 
 int main()
@@ -39,5 +46,7 @@ int main()
 	std::string str;
 	str = "qwerty";
 	//Tnode tree(str,1);
+	Ask a1;
+	std::couti << a1.who();
 	return 0;
 }
