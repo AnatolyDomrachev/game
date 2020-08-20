@@ -201,11 +201,9 @@ int main()
 	file.open(FNAME);
 	read_file(tree, file);
 	file.close();
-	/*
 	game(tree);
 	clear_file();
 	write_file(tree);
-	*/
 
 	return 0;
 }

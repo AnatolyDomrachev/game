@@ -1,5 +1,7 @@
 Do you have крылья?:0
 Do you  have скорость?:0
+Do you  have силу?:0
+Орёл:1
 Чайка:1
 Ворона:1
 Do you have полоски?:0
