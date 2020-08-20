@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <fstream>
 
 enum{ASK, ANIMAL};
 enum{LEFT, RIGHT};

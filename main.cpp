@@ -41,8 +41,9 @@ void add_ask(Tnode *node, std::string ask_2, std::string animal_3, int type)
 
 std::string ans_to_ask(std::string new_ans)
 {
-	std::string tmp = "Do you ";
-	return tmp + new_ans;
+	std::string tmp1 = "Do you ";
+	std::string tmp2 = "?";
+	return tmp1 + new_ans + tmp2;
 }
 
 void game_2(Tnode *tree, Tnode *parent, int type)
@@ -110,11 +111,53 @@ void create_tree(Tnode *tree, std::string ask,std::string animal_1,std::string a
 	tree->right->key = animal_2;
 }
 
+void clear_file()
+{
+	std::ofstream file;
+	file.open(FNAME);
+	file.close();
+}
+
 void write_file(Tnode *tree)
-{}
+{
+	std::ofstream file;
+	file.open(FNAME, std::ifstream::app);
+	file << tree->key << ':' << tree->who() << '\n';
+	file.close();
+	if(tree->who() == ASK)
+	{
+		write_file(tree->left);
+		write_file(tree->right);
+	}
+}
+
+void read_file(Tnode *tree)
+{
+	int type;
+	std::string tmp;
+	std::ifstream file;
+
+	file.open(FNAME);
+	getline(file, tree->key, ':');
+	file >> type;
+	getline(file, tmp);
+
+	if(type == ASK)
+	{
+		read_file(tree->left);
+		read_file(tree->right);
+	}
+
+	if(type == ANIMAL)
+	{
+		tree->left
+
+}
 
 int main()
 {
+	Tnode *tree = new Ask;
+/*
 	std::string ask_1;
 	std::string ask_2;
 	ask_1 = "Do you have крылья?";
@@ -125,13 +168,16 @@ int main()
 	animal_1 = "Ворона";
 	animal_2 = "Леопард";
 	animal_3 = "Тигр";
-	Tnode *tree = new Ask;;
-	//tree->create_tree(ask_1, animal_1, animal_2);
 	create_tree(tree, ask_1, animal_1, animal_2);
 	add_ask(tree,ask_2, animal_3, RIGHT);
-	game(tree);
+*/
 
+	read_file(tree);
+	/*
+	game(tree);
+	clear_file();
 	write_file(tree);
+	*/
 
 	return 0;
 }
