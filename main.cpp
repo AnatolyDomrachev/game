@@ -2,6 +2,8 @@
 #include "Ask.h"
 #include "Animal.h"
 
+#define FNAME "data.txt"
+
 void game(Tnode *tree);
 
 void add_ask(Tnode *node, std::string ask_2, std::string animal_3, int type)
@@ -43,7 +45,7 @@ std::string ans_to_ask(std::string new_ans)
 	return tmp + new_ans;
 }
 
-void game_2(Tnode *tree, Tnode *parent)
+void game_2(Tnode *tree, Tnode *parent, int type)
 {
 	char ans;
 	std::string new_ask;
@@ -73,9 +75,11 @@ void game_2(Tnode *tree, Tnode *parent)
 			std::cin.ignore();
 			getline(std::cin, new_ans);
 
-			new_ask = ans_to_ask(new_ans);
-			add_ask(parent,new_ask, new_animal, LEFT);
+			std::cout << "Thanks, I will remember this!" << std::endl;
 
+			new_ask = ans_to_ask(new_ans);
+			add_ask(parent,new_ask, new_animal, type);
+			return;
 		}
 	}
 
@@ -91,10 +95,10 @@ void game(Tnode *tree)
 	std::cin >> ans;
 
 	if(ans == 'y')
-	    game_2(tree->left, tree);
+	    game_2(tree->left, tree, LEFT);
 
 	if(ans == 'n')
-	    game_2(tree->right, tree);
+	    game_2(tree->right, tree, RIGHT);
 }
 
 void create_tree(Tnode *tree, std::string ask,std::string animal_1,std::string animal_2)
@@ -105,6 +109,9 @@ void create_tree(Tnode *tree, std::string ask,std::string animal_1,std::string a
 	tree->right = new Animal;
 	tree->right->key = animal_2;
 }
+
+void write_file(Tnode *tree)
+{}
 
 int main()
 {
@@ -122,8 +129,9 @@ int main()
 	//tree->create_tree(ask_1, animal_1, animal_2);
 	create_tree(tree, ask_1, animal_1, animal_2);
 	add_ask(tree,ask_2, animal_3, RIGHT);
-
 	game(tree);
+
+	write_file(tree);
 
 	return 0;
 }
