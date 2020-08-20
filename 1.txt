@@ -1,0 +1,15 @@
+(gdb) p tree->key
+$1 = "Do you have крылья?"
+(gdb) p tree->left->key
+$2 = "Ворона"
+(gdb) p tree->right->key
+$3 = "Do you have полоски?"
+(gdb) p tree->right->left->key
+$4 = "Тигр"
+(gdb) p tree->right->right->key
+$5 = "Леопард"
+(gdb) p tree->right->right->who()
+$6 = 1
+(gdb) p tree->right->who()
+$7 = 0
+

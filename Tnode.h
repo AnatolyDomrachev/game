@@ -2,6 +2,7 @@
 #include <iostream>
 
 enum{ASK, ANIMAL};
+enum{LEFT, RIGHT};
 
 class Tnode {
 	public:
