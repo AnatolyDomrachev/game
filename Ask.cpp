@@ -7,6 +7,7 @@ int Ask::who()
 	return ASK;
 }
 
+/*
 void Ask::create_tree(std::string ask,std::string animal_1,std::string animal_2)
 {
 	key = ask;
@@ -16,3 +17,4 @@ void Ask::create_tree(std::string ask,std::string animal_1,std::string animal_2)
 	right->key = animal_2;
 }
 
+*/
