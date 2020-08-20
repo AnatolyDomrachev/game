@@ -147,14 +147,33 @@ read_file2(tree->left)
 }
 */
 
-void read_file(Tnode *tree, std::ifstream & file)
+void read_file(Tnode * & tree, std::ifstream & file)
 {
-	int type;
-	std::string tmp;
+	if(file.eof())
+		return;
 
-	getline(file, tree->key, ':');
+	int type;
+	std::string tmp1;
+	std::string tmp2;
+
+	getline(file, tmp1, ':');
 	file >> type;
-	getline(file, tmp);
+	getline(file, tmp2);
+
+	if(type == ANIMAL)
+	{
+		tree = new Animal;
+		tree->key = tmp1;
+		return;
+	}
+
+	if(type == ASK)
+	{
+		tree = new Ask;
+		tree->key = tmp1;
+		read_file(tree->left, file);
+		read_file(tree->right, file);
+	}
 
 	//read_file2(tree->left);
 	//read_file2(tree->right);
@@ -162,7 +181,7 @@ void read_file(Tnode *tree, std::ifstream & file)
 
 int main()
 {
-	Tnode *tree = new Ask;
+	Tnode *tree;
 /*
 	std::string ask_1;
 	std::string ask_2;
