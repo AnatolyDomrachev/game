@@ -131,27 +131,33 @@ void write_file(Tnode *tree)
 	}
 }
 
-void read_file(Tnode *tree)
+/*
+read_file2(tree->left)
+{
+	int type;
+	std::string tmp1;
+	std::string tmp2;
+	std::ifstream file;
+	file.open(FNAME);
+
+	getline(file, tmp1, ':');
+	file >> type;
+	getline(file, tmp2);
+	file.close();
+}
+*/
+
+void read_file(Tnode *tree, std::ifstream & file)
 {
 	int type;
 	std::string tmp;
-	std::ifstream file;
 
-	file.open(FNAME);
 	getline(file, tree->key, ':');
 	file >> type;
 	getline(file, tmp);
 
-	if(type == ASK)
-	{
-		read_file(tree->left);
-		read_file(tree->right);
-	}
-
-	if(type == ANIMAL)
-	{
-		tree->left
-
+	//read_file2(tree->left);
+	//read_file2(tree->right);
 }
 
 int main()
@@ -172,7 +178,10 @@ int main()
 	add_ask(tree,ask_2, animal_3, RIGHT);
 */
 
-	read_file(tree);
+	std::ifstream file;
+	file.open(FNAME);
+	read_file(tree, file);
+	file.close();
 	/*
 	game(tree);
 	clear_file();
